@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Método de pago</title>
+  <link rel="stylesheet" href="store.css">
+</head>
+<body data-page="pago">
+  <div id="siteHeader"></div>
+  <main>
+    <div class="wrap page">
+      <div class="checkout">
+        <section>
+          <h1>Método de pago</h1>
+          <div class="pay-methods">
+            <button class="method active" data-method="tarjeta">Tarjeta</button>
+            <button class="method" data-method="pse">PSE</button>
+          </div>
+          <form class="form" id="payForm" novalidate>
+            <div class="form" id="paneCard">
+              <label>Número de tarjeta<input id="cardNumber" inputmode="numeric" autocomplete="off" placeholder="0000 0000 0000 0000"><small class="err" id="cardNumberErr"></small></label>
+              <label>Nombre del titular<input id="cardName" autocomplete="off" placeholder="Como aparece en la tarjeta"><small class="err" id="cardNameErr"></small></label>
+              <div class="row">
+                <label>Vencimiento<input id="cardExp" inputmode="numeric" autocomplete="off" placeholder="MM/AA"><small class="err" id="cardExpErr"></small></label>
+                <label>CVV<input id="cardCvv" inputmode="numeric" autocomplete="off" placeholder="123"><small class="err" id="cardCvvErr"></small></label>
+              </div>
+            </div>
+            <div class="form" id="panePse" hidden>
+              <label>Banco<select id="bank"><option value="">Elige tu banco</option><option>Bancolombia</option><option>Davivienda</option><option>Banco de Bogotá</option><option>Nequi</option></select><small class="err" id="bankErr"></small></label>
+              <label>Correo electrónico<input id="pseMail" type="email" autocomplete="off" placeholder="tucorreo@ejemplo.com"><small class="err" id="pseMailErr"></small></label>
+            </div>
+          </form>
+        </section>
+        <aside class="summary">
+          <div><span>Subtotal</span><span id="subtotal"></span></div>
+          <div class="total"><b>Total</b><b id="total"></b></div>
+          <button class="btn big full" id="confirmPay" form="payForm">Confirmar pago</button>
+        </aside>
+      </div>
+    </div>
+  </main>
+  <div id="siteFooter"></div>
+  <div id="toast" role="status"></div>
+  <script src="store.js"></script>
+</body>
+</html>

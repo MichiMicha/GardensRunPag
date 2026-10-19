@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Buscar</title>
+  <link rel="stylesheet" href="store.css">
+</head>
+<body data-page="buscar">
+  <div id="siteHeader"></div>
+  <main>
+    <div class="wrap page">
+      <form class="search" onsubmit="return false">
+        <input id="q" type="search" placeholder="Buscar..." autocomplete="off" autofocus>
+      </form>
+      <h2 class="section" id="resultsTitle" style="padding:0;font-size:1.3rem;margin-bottom:18px"></h2>
+      <div class="grid" id="resultsGrid"></div>
+    </div>
+  </main>
+  <div id="siteFooter"></div>
+  <div id="toast" role="status"></div>
+  <script src="store.js"></script>
+</body>
+</html>

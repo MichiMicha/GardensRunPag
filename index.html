@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Garden's Run</title>
+  <meta name="description" content="Garden's Run es una aventura de acción y captura de verduras y frutas.">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#historia">Saltar al contenido</a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <nav class="nav" id="menu" aria-label="Principal">
+        <a href="#personajes" data-section="personajes">Personajes</a>
+        <a href="#contacto" data-section="contacto">Contacto</a>
+        <a href="#historia" data-section="historia">Historia</a>
+      </nav>
+      <a class="btn-buy" href="producto.html">Comprar</a>
+      <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="menu" aria-label="Abrir menú">
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+
+    <h1 class="sr-only">Garden's Run</h1>
+    <section class="hero" aria-label="Garden's Run">
+      <img class="hero-logo" src="images/logo-gardens-run.png" width="1400" height="560">
+    </section>
+
+    <section class="trailer" id="trailer" aria-labelledby="trailer-title">
+      <h2 class="title title-center" id="trailer-title">Trailer</h2>
+      <hr class="rule">
+      <div class="trailer-box" id="trailerBox">
+        <button class="play-btn" id="playBtn" type="button" aria-label="Reproducir tráiler">
+          <svg viewBox="0 0 110 110" aria-hidden="true" focusable="false">
+            <circle cx="55" cy="55" r="51" fill="none" stroke="currentColor" stroke-width="2.5"/>
+            <polygon points="44,34 44,76 78,55" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    </section>
+
+    <section class="historia" id="historia" aria-labelledby="historia-title">
+      <h2 class="title-italic" id="historia-title">Historia</h2>
+      <div class="historia-band">
+        <img class="historia-img" src="images/frutas.png" width="596" height="842">
+        <p class="historia-text">
+          Garden's Run es una aventura de acción y captura de ¡Verduras y frutas!
+          Explora tu pintoresco jardín, enfréntate a traviesas frutas con habilidades
+          únicas usando herramientas de jardinería y llévalas de regreso a casa para
+          llenar tu canasta en esta emocionante y cómica persecución.
+        </p>
+      </div>
+    </section>
+
+    <section class="personajes" id="personajes" aria-labelledby="personajes-title">
+      <h2 class="title title-left" id="personajes-title">Personajes</h2>
+
+      <div class="gray-band" id="carousel" tabindex="0" role="group" aria-roledescription="carrusel" aria-label="Personajes">
+        <div class="slides" id="slides" aria-live="polite">
+
+          <article class="slide is-active" aria-roledescription="diapositiva" aria-label="1 de 2: Sam">
+            <div class="char-text">
+              <h3 class="char-name">Sam</h3>
+              <p class="char-desc">Persona de ciencia cuya cena escapó y ahora tendrá que atrapar.</p>
+            </div>
+            <div class="chars">
+              <img class="char-jar" src="images/sam jar.png" alt="Sam con su traje de jardinería" width="540" height="701">
+              <img class="char-lab" src="images/sam lab.png" alt="Sam con su bata de laboratorio" width="480" height="1047">
+            </div>
+          </article>
+
+          <article class="slide" aria-roledescription="diapositiva" aria-label="2 de 2: Las frutas">
+            <div class="char-text">
+              <h3 class="char-name">Las frutas</h3>
+              <p class="char-desc">Frutas que huyeron de sus macetas para causar caos.</p>
+            </div>
+            <div class="chars chars-group">
+              <img class="char-group" src="images/frutas-grupo.png" width="900" height="700">
+            </div>
+          </article>
+
+        </div>
+
+        <div class="controls">
+          <button class="arrow arrow-prev" id="prevBtn" type="button" aria-label="Personaje anterior">
+            <svg viewBox="0 0 84 110" aria-hidden="true" focusable="false"><polyline points="70,6 14,55 70,104" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="dots" id="dots" role="tablist" aria-label="Elegir personaje"></div>
+          <button class="arrow arrow-next" id="nextBtn" type="button" aria-label="Personaje siguiente">
+            <svg viewBox="0 0 84 110" aria-hidden="true" focusable="false"><polyline points="14,6 70,55 14,104" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="consiguelo" id="consiguelo" aria-labelledby="consiguelo-title">
+      <h2 class="title title-center" id="consiguelo-title">Consíguelo</h2>
+      <hr class="rule">
+      <div class="get-box">
+        <p>Disponible en la tienda de Chiribi Studios.</p>
+        <a class="btn-get" href="producto.html">Obtener</a>
+      </div>
+      <hr class="rule rule-bottom">
+    </section>
+  </main>
+
+  <footer class="site-footer" id="contacto">
+    <ul class="socials">
+      <li><a href="https://x.com" target="_blank" rel="noopener noreferrer" aria-label="Chiribi Studios en X"><img src="images/social-x.png" alt="" width="121" height="121"></a></li>
+      <li><a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Chiribi Studios en Instagram"><img src="images/social-instagram.png" alt="" width="121" height="121"></a></li>
+      <li><a href="https://www.tiktok.com" target="_blank" rel="noopener noreferrer" aria-label="Chiribi Studios en TikTok"><img src="images/social-tiktok.png" alt="" width="121" height="121"></a></li>
+    </ul>
+    <a class="footer-logo" href="tienda.html" aria-label="Ir a la tienda de Chiribi Studios">
+      <img src="images/chiribi-studios-logo.png" alt="Chiribi Studios" width="666" height="248">
+    </a>
+    <p class="copy">© Chiribi Studios 2026. All Rights Reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

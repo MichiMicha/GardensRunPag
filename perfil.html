@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mi perfil — Chiribi Studios</title>
+  <link rel="stylesheet" href="store.css">
+</head>
+<body data-page="perfil">
+  <div id="siteHeader"></div>
+  <main>
+    <div class="wrap">
+      <div class="profile-head">
+        <div class="avatar" id="avatar"></div>
+        <div><h1 id="profileName"></h1><p id="profileMail"></p></div>
+        <button class="btn outline" id="logoutBtn">Cerrar sesión</button>
+      </div>
+      <div class="profile-body">
+        <nav class="side">
+          <span class="active">Mis Productos</span>
+          <button class="danger" id="deleteOpen">Eliminar cuenta</button>
+        </nav>
+        <div class="grid" id="ownedGrid"></div>
+      </div>
+    </div>
+  </main>
+  <div id="siteFooter"></div>
+  <div id="toast" role="status"></div>
+  <dialog id="deleteDialog">
+    <h2>¿Eliminar tu cuenta?</h2>
+    <p>Perderás tu colección de juegos, tu historial de compras y los datos de tu cuenta. Esta acción no se puede deshacer.</p>
+    <div class="row">
+      <button class="btn ghost big" id="deleteCancel">Cancelar</button>
+      <button class="btn outline big" id="deleteConfirm">Eliminar cuenta</button>
+    </div>
+  </dialog>
+  <script src="store.js"></script>
+</body>
+</html>

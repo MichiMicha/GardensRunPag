@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Carrito</title>
+  <link rel="stylesheet" href="store.css">
+</head>
+<body data-page="carrito">
+  <div id="siteHeader"></div>
+  <main>
+    <div class="wrap page">
+      <div class="checkout">
+        <section>
+          <h1>Productos en el carrito</h1>
+          <div id="cartList"></div>
+        </section>
+        <aside class="summary">
+          <div><span>Subtotal</span><span id="subtotal"></span></div>
+          <div class="total"><b>Total</b><b id="total"></b></div>
+          <button class="btn big full" id="goPay">Continuar al pago</button>
+          <p class="note">Necesitas iniciar sesión para pagar.</p>
+        </aside>
+      </div>
+    </div>
+  </main>
+  <div id="siteFooter"></div>
+  <div id="toast" role="status"></div>
+  <script src="store.js"></script>
+</body>
+</html>

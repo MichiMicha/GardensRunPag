@@ -283,6 +283,21 @@ select {
   display: flex;
   flex-direction: column;
 }
+/* Hover de productos (solo en equipos con mouse) */
+.card,
+.media img {
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+@media (hover: hover) {
+  .card:hover {
+    transform: translateY(-6px);
+    border-color: var(--lila);
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.55), 0 0 0 1px var(--lila);
+  }
+  .card:hover .media img {
+    transform: scale(1.06);
+  }
+}
 .media {
   background: #000;
   overflow: hidden;
@@ -510,7 +525,7 @@ select {
   color: var(--dim);
 }
 .summary {
-  display: g rid;
+  display: grid;
   gap: 14px;
   padding: 20px;
   background: var(--panel);

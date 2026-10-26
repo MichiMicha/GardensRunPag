@@ -67,7 +67,7 @@ a {
 h1 {
   margin: 0;
   font-family:
-    TT Hoves Pro,
+    TT Hoves Pro Extra,
     system-ui,
     sans-serif;
   font-weight: 800;
@@ -85,7 +85,7 @@ h4 {
 }
 h3 {
   font-weight: 500;
-  font-size: 1rem;
+  font-size: 135%;
 }
 p {
   margin: 0;
@@ -283,7 +283,7 @@ select {
   display: flex;
   flex-direction: column;
 }
-/* Hover de productos */
+/* Hover*/
 .card,
 .media img {
   transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
@@ -298,7 +298,8 @@ select {
     transform: scale(1.06);
   }
 }
-.media {
+.media,
+.thumb {
   background: #000;
   overflow: hidden;
 }
@@ -360,6 +361,9 @@ select {
   margin-top: auto;
   padding-top: 12px;
 }
+.foot {
+  flex-wrap: wrap;
+}
 .foot .btn {
   position: relative;
   margin-left: auto;
@@ -381,7 +385,7 @@ select {
 .hero h1 {
   color: #000000;
   font-size: clamp(1.8rem, 3.6vw, 2.6rem);
-  margin: 8px 0 16px;
+  /*margin: 8px 0 16px;*/
 }
 .hero .btn {
   margin-top: 22px;
@@ -499,12 +503,15 @@ select {
   height: 130px;
   border-radius: 6px;
   overflow: hidden;
-  background: var(--tan);
 }
 .thumb img {
   height: 100%;
-  width: auto;
+  width: 100%;
   object-fit: cover;
+}
+.thumb.contain img,
+.feature .thumb img {
+  object-fit: contain;
 }
 .qty {
   display: flex;
@@ -582,7 +589,7 @@ select {
   gap: 12px;
 }
 
-/* Tarjetas centradas */
+/* Login, contacto, pago realizado */
 .center {
   display: grid;
   place-items: center;
@@ -716,7 +723,7 @@ select {
   align-content: start;
 }
 
-/* Lector de cómic */
+/* Lector */
 .reader {
   display: grid;
   gap: 16px;
@@ -924,6 +931,22 @@ dialog .form {
   .profile-body {
     grid-template-columns: 1fr;
   }
+
+  .hero {
+    gap: 8px;
+    padding: 22px 18px;
+    text-align: center;
+  }
+  .hero .btn {
+    display: block;
+    margin-top: 16px;
+  }
+  .hero img {
+    order: -1;
+    width: 100%;
+    height: clamp(130px, 46vw, 240px);
+    object-fit: contain;
+  }
   .cols {
     grid-template-columns: 1fr 1fr;
   }
@@ -981,6 +1004,19 @@ dialog .form {
   }
 }
 @media (max-width: 560px) {
+  .info {
+    padding: 12px;
+  }
+  .foot {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+  .foot .btn {
+    width: 100%;
+    margin-left: 0;
+    text-align: center;
+  }
   .feature {
     flex-direction: column;
     align-items: stretch;

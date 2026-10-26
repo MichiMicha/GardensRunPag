@@ -4,10 +4,9 @@ const DEMO = { name: 'Coco Tuneado', email: 'uncorreojsjjs@gmail.com' };
 const VALIDAR_PAGO = true;
 const AVATAR = 'images/avatar.png';
 
-/*páginas en la carpeta comic/ llamadas 1.jpg, 2.jpg, 3.jpg... */
-
+/* Cómic, páginas en la respectiva carpeta, toca llamarlas 1.jpg, 2.jpg, 3.jpg, etc.*/
 const COMIC_IDS = ['gardens-comic', 'comic-1'];
-const COMIC = { titulo: "Garden's Run", carpeta: 'comic/', paginas: 10, ext: 'jpg' };
+const COMIC = { titulo: "Garden's Run", carpeta: 'comic/', paginas: 4, ext: 'jpg' };
 
 const PRODUCTS = [
   { id: 'juego-1', type: 'juego', name: 'Juego 1', tag: 'RPG de Acción', price: 79900, img: 'images/game-1.png', r: 'tall' },
@@ -36,8 +35,8 @@ const PRODUCTS = [
   { id: 'libro', type: 'merch-marca', name: 'Mystery Box Chiribi', tag: 'Merch de marca', price: 59900, img: 'images/mystery-box.png' },
 
   { id: 'nov-1', type: 'novedad', name: 'Juego', tag: 'RPG de Acción', price: 79900, bg: 'g-red', r: 'short' },
-  { id: 'nov-2', type: 'novedad', name: 'Cómic', tag: 'Acción', price: 69900, bg: 'g-green', r: 'short' },
-  { id: 'nov-3', type: 'novedad', name: 'Cómic', tag: 'Aventura', price: 59900, bg: 'g-blue', r: 'short' },
+  { id: 'nov-2', type: 'novedad', free: true, name: 'Cómic', tag: 'Acción', price: 69900, bg: 'g-green', r: 'short' },
+  { id: 'nov-3', type: 'novedad', free: true, name: 'Cómic', tag: 'Aventura', price: 59900, bg: 'g-blue', r: 'short' },
   { id: 'nov-4', type: 'novedad', name: 'Juego', tag: 'Puzzle Narrativo', price: 49900, bg: 'g-purple', r: 'short' },
 
   { id: 'gardens-comic', type: 'hidden', name: "Garden's Run", tag: 'Precuela', price: 0, img: 'images/cover-gardens-run.png', bg: 'sage' }
@@ -122,7 +121,7 @@ saveCart();
 
 /*Tarjetas de producto*/
 function card(p, mode = 'buy') {
-  if (COMIC_IDS.includes(p.id) && mode === 'buy') mode = 'leer';
+  if ((p.type === 'comic' || p.free || COMIC_IDS.includes(p.id)) && mode === 'buy') mode = 'leer';
   const media = `<div class="media ${p.r || 'wide'} ${p.bg || ''} ${p.fit || ''}">${p.img ? `<img src="${p.img}" alt="">` : ''}</div>`;
   const leer = `<div class="foot"><button class="btn" data-leer="${p.id}">Leer</button></div>`;
   const comprar = `<div class="foot"><b>${money(p.price)}</b><button class="btn" data-add="${p.id}">Agregar</button></div>`;
@@ -142,7 +141,7 @@ document.addEventListener('click', (e) => {
   if (leer) COMIC_IDS.includes(leer.dataset.leer) ? (location.href = 'lector.html') : toast('Este cómic llegará muy pronto');
 });
 
-/*Pestañas (Productos y Mercancía)*/
+/*Productos y Mercancía*/
 function tabs(options) {
   const buttons = $$('[data-tab]');
   const draw = () => {
@@ -228,7 +227,7 @@ const pages = {
       $('#cartList').innerHTML = cart.length ? cart.map((i) => {
         const p = byId(i.id);
         return `<div class="cart-item" data-id="${p.id}">
-          <div class="thumb ${p.bg || ''}">${p.img ? `<img src="${p.img}" alt="">` : ''}</div>
+          <div class="thumb ${p.bg || ''} ${p.fit || ''}">${p.img ? `<img src="${p.img}" alt="">` : ''}</div>
           <div><h3>${p.name}</h3><p class="tag">${p.tag}</p>
             <div class="qty"><button data-d="-1" aria-label="Quitar uno">−</button>${i.qty}<button data-d="1" aria-label="Agregar uno">+</button></div></div>
           <b>${money(p.price * i.qty)}</b>
@@ -265,29 +264,16 @@ const pages = {
       };
     });
 
-    /* Formato automático al escribir */
     const digits = (el, max) => el.value.replace(/\D/g, '').slice(0, max);
-    $('#cardNumber').oninput = (e) => { e.target.value = digits(e.target, 19).replace(/(.{4})/g, '$1 ').trim(); };
+    $('#cardNumber').oninput = (e) => { e.target.value = digits(e.target, 16).replace(/(.{4})/g, '$1 ').trim(); };
     $('#cardExp').oninput = (e) => { const v = digits(e.target, 4); e.target.value = v.length > 2 ? v.slice(0, 2) + '/' + v.slice(2) : v; };
     $('#cardCvv').oninput = (e) => { e.target.value = digits(e.target, 4); };
 
-    /*comprueba que el número de tarjeta sea válido */
-    const luhn = (num) => {
-      let sum = 0, alt = false;
-      for (let i = num.length - 1; i >= 0; i--) {
-        let d = +num[i];
-        if (alt) { d *= 2; if (d > 9) d -= 9; }
-        sum += d; alt = !alt;
-      }
-      return sum % 10 === 0;
-    };
-
-    /* Devuelve con los errores encontrados */
     const errors = () => {
       const e = {};
       if (method === 'tarjeta') {
         const num = $('#cardNumber').value.replace(/\s/g, '');
-        if (num.length < 13 || !luhn(num)) e.cardNumber = 'Número de tarjeta no válido. Para probar usa 4242 4242 4242 4242.';
+        if (num.length !== 16) e.cardNumber = 'Escribe los 16 dígitos de la tarjeta (0000 0000 0000 0000).';
         if ($('#cardName').value.trim().length < 3) e.cardName = 'Escribe el nombre como aparece en la tarjeta.';
         const m = /^(\d{2})\/(\d{2})$/.exec($('#cardExp').value);
         const now = new Date();
@@ -330,7 +316,7 @@ const pages = {
     const goTo = /^[\w-]+\.html$/.test(next) ? next : 'perfil.html';
     if (user) return (location.href = goTo);
 
-    /* Login, ventana "Elige una cuenta"*/
+    /* Login */
     const dialog = $('#googleDialog');
     $('#demoName').textContent = DEMO.name;
     $('#demoMail').textContent = DEMO.email;

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cómic</title>
+  <link rel="stylesheet" href="store.css">
+</head>
+<body data-page="lector">
+  <div id="siteHeader"></div>
+  <main>
+    <div class="wrap reader">
+      <div class="reader-bar">
+        <a class="btn ghost" id="backBtn" href="productos.html#expansiones">←</a>
+        <h1 id="comicTitle"></h1>
+        <span id="pageNum"></span>
+      </div>
+      <img id="pageImg" alt="Página del cómic">
+      <div class="reader-nav">
+        <button class="btn big" id="prev">← Anterior</button>
+        <button class="btn big" id="next">Siguiente →</button>
+      </div>
+    </div>
+  </main>
+  <div id="siteFooter"></div>
+  <div id="toast" role="status"></div>
+  <script src="store.js"></script>
+</body>
+</html>

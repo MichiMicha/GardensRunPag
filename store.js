@@ -2,11 +2,17 @@
 const LOGO = 'images/chiribi-studios-logo2.png';
 const DEMO = { name: 'Coco Tuneado', email: 'uncorreojsjjs@gmail.com' };
 const VALIDAR_PAGO = true;
+const AVATAR = 'images/avatar.png';
+
+/*páginas en la carpeta comic/ llamadas 1.jpg, 2.jpg, 3.jpg... */
+
+const COMIC_IDS = ['gardens-comic', 'comic-1'];
+const COMIC = { titulo: "Garden's Run", carpeta: 'comic/', paginas: 10, ext: 'jpg' };
 
 const PRODUCTS = [
   { id: 'juego-1', type: 'juego', name: 'Juego 1', tag: 'RPG de Acción', price: 79900, img: 'images/game-1.png', r: 'tall' },
   { id: 'juego-2', type: 'juego', name: 'Juego 2', tag: 'RPG de Acción', price: 79900, img: 'images/game-2.png', r: 'tall' },
-  { id: 'gardens-run', type: 'juego', name: "Garden's Run", tag: 'Gestión de Recursos', price: 40900, img: 'images/logo-gardens-run.png', bg: 'tan', r: 'tall', url: 'producto.html' },
+  { id: 'gardens-run', type: 'juego', name: "Garden's Run", tag: 'Gestión de Recursos', price: 40900, img: 'images/logo-gardens-run.png', bg: 'tan', r: 'tall', fit: 'contain', url: 'producto.html' },
   { id: 'juego-3', type: 'juego', name: 'Juego 3', tag: 'RPG de Acción', price: 79900, img: 'images/game-3.png', r: 'tall' },
 
   { id: 'comic-1', type: 'comic', name: "Garden's Run", tag: 'Precuela', price: 69900, img: 'images/cover-gardens-run.png', bg: 'sage' },
@@ -27,7 +33,7 @@ const PRODUCTS = [
   { id: 'peluche-zanahoria', type: 'merch-juego', name: 'Peluche Zanahoria', tag: 'Merch de juego', price: 29900, img: 'images/merch-peluche-zanahoria.png' },
   { id: 'peluche-sandia', type: 'merch-juego', name: 'Peluche Sandía', tag: 'Merch de juego', price: 49900, img: 'images/merch-peluche-sandia.png' },
 
-  { id: 'libro', type: 'Box', name: 'Mystery Box Chiribi', tag: 'Merch de marca', price: 59900, img: 'images/mystery-box.png' },
+  { id: 'libro', type: 'merch-marca', name: 'Mystery Box Chiribi', tag: 'Merch de marca', price: 59900, img: 'images/mystery-box.png' },
 
   { id: 'nov-1', type: 'novedad', name: 'Juego', tag: 'RPG de Acción', price: 79900, bg: 'g-red', r: 'short' },
   { id: 'nov-2', type: 'novedad', name: 'Cómic', tag: 'Acción', price: 69900, bg: 'g-green', r: 'short' },
@@ -37,7 +43,7 @@ const PRODUCTS = [
   { id: 'gardens-comic', type: 'hidden', name: "Garden's Run", tag: 'Precuela', price: 0, img: 'images/cover-gardens-run.png', bg: 'sage' }
 ];
 
-/* ---------- Ayudas ---------- */
+/*Ayudas*/
 const $ = (sel) => document.querySelector(sel);
 const $$ = (sel) => [...document.querySelectorAll(sel)];
 const load = (key, fallback) => JSON.parse(localStorage.getItem(key)) ?? fallback;
@@ -84,7 +90,7 @@ function changeQty(id, delta) {
 const svg = (d) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">${d}</svg>`;
 const logo = `<a class="brand" href="tienda.html"><img src="${LOGO}" alt="Chiribi Studios"></a>`;
 const page = document.body.dataset.page;
-const here = { productos: 'productos', producto: 'productos', mercancia: 'mercancia', contacto: 'contacto' }[page];
+const here = { productos: 'productos', producto: 'productos', lector: 'productos', mercancia: 'mercancia', contacto: 'contacto' }[page];
 const link = (href, text, key) => `<a href="${href}"${key === here ? ' class="active"' : ''}>${text}</a>`;
 
 $('#siteHeader').outerHTML = `
@@ -116,11 +122,14 @@ saveCart();
 
 /*Tarjetas de producto*/
 function card(p, mode = 'buy') {
-  const media = `<div class="media ${p.r || 'wide'} ${p.bg || ''}">${p.img ? `<img src="${p.img}" alt="">` : ''}</div>`;
-  const button = mode === 'owned' ? '' : mode === 'leer'
-    ? '<div class="foot"><button class="btn" data-leer>Leer</button></div>'
-    : `<div class="foot"><b>${money(p.price)}</b><button class="btn" data-add="${p.id}">Agregar</button></div>`;
-  const name = p.url ? `<a href="${p.url}">${p.name}</a>` : p.name;
+  if (COMIC_IDS.includes(p.id) && mode === 'buy') mode = 'leer';
+  const media = `<div class="media ${p.r || 'wide'} ${p.bg || ''} ${p.fit || ''}">${p.img ? `<img src="${p.img}" alt="">` : ''}</div>`;
+  const leer = `<div class="foot"><button class="btn" data-leer="${p.id}">Leer</button></div>`;
+  const comprar = `<div class="foot"><b>${money(p.price)}</b><button class="btn" data-add="${p.id}">Agregar</button></div>`;
+  const reads = mode === 'leer' || (mode === 'owned' && ['comic', 'hidden'].includes(p.type));
+  const button = reads ? leer : mode === 'owned' ? '' : comprar;
+  const name = p.url ? `<a href="${p.url}">${p.name}</a>`
+    : reads ? `<a href="${COMIC_IDS.includes(p.id) ? 'lector.html' : '#'}" data-leer="${p.id}">${p.name}</a>` : p.name;
   return `<article class="card">${media}<div class="info"><h3>${name}</h3><p class="tag">${p.tag}</p>${button}</div></article>`;
 }
 const show = (selector, list, mode) => { $(selector).innerHTML = list.map((p) => card(p, mode)).join(''); };
@@ -128,7 +137,9 @@ const show = (selector, list, mode) => { $(selector).innerHTML = list.map((p) =>
 document.addEventListener('click', (e) => {
   const add = e.target.closest('[data-add]');
   if (add) addToCart(add.dataset.add);
-  if (e.target.closest('[data-leer]')) toast('El lector de cómics llegará muy pronto');
+  const leer = e.target.closest('[data-leer]');
+  if (leer) e.preventDefault();
+  if (leer) COMIC_IDS.includes(leer.dataset.leer) ? (location.href = 'lector.html') : toast('Este cómic llegará muy pronto');
 });
 
 /*Pestañas (Productos y Mercancía)*/
@@ -169,8 +180,35 @@ const pages = {
       if (!cart.some((i) => i.id === 'gardens-run')) addToCart('gardens-run');
       location.href = 'carrito.html';
     };
-    $('#relatedGrid').innerHTML = ['gardens-comic', 'peluche-limon', 'peluche-arandano', 'peluche-sandia']
+    $('#relatedGrid').innerHTML = ['gardens-comic', 'peluche-limon', 'juego-de-mesa', 'peluche-sandia']
       .map((id) => card({ ...byId(id), r: 'wide' }, id === 'gardens-comic' ? 'leer' : 'buy')).join('');
+  },
+
+  lector() {
+    $('#comicTitle').textContent = COMIC.titulo;
+    let n = Math.min(Math.max(+location.hash.slice(1) || 1, 1), COMIC.paginas);
+    const src = (i) => `${COMIC.carpeta}${i}.${COMIC.ext}`;
+    const draw = () => {
+      $('#pageImg').src = src(n);
+      $('#pageNum').textContent = `${n} / ${COMIC.paginas}`;
+      $('#prev').disabled = n === 1;
+      $('#next').disabled = n === COMIC.paginas;
+      history.replaceState(null, '', '#' + n);
+      scrollTo(0, 0);
+      if (n < COMIC.paginas) new Image().src = src(n + 1);
+    };
+    const go = (d) => { n = Math.min(Math.max(n + d, 1), COMIC.paginas); draw(); };
+    $('#prev').onclick = () => go(-1);
+    $('#next').onclick = () => go(1);
+    $('#backBtn').onclick = (e) => {
+      if (document.referrer && new URL(document.referrer).origin === location.origin) { e.preventDefault(); history.back(); }
+    };
+    $('#pageImg').onerror = () => toast('No se encontró ' + src(n));
+    addEventListener('keydown', (e) => { if (e.key === 'ArrowLeft') go(-1); if (e.key === 'ArrowRight') go(1); });
+    let x0;
+    addEventListener('touchstart', (e) => { x0 = e.touches[0].clientX; }, { passive: true });
+    addEventListener('touchend', (e) => { const dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) > 60) go(dx < 0 ? 1 : -1); });
+    draw();
   },
 
   buscar() {
@@ -179,7 +217,7 @@ const pages = {
       const q = norm($('#q').value);
       const list = q ? PRODUCTS.filter((p) => !['hidden', 'novedad'].includes(p.type) && norm(p.name + ' ' + p.tag).includes(q)) : sugeridos;
       $('#resultsTitle').textContent = q ? 'Resultados' : 'Sugerencias';
-      $('#resultsGrid').innerHTML = list.length ? list.map((p) => card(p)).join('') : '<p class="empty">No encontramos resultados.</p>';
+      $('#resultsGrid').innerHTML = list.length ? list.map((p) => card({ ...p, r: 'wide' })).join('') : '<p class="empty">No encontramos resultados.</p>';
     };
     $('#q').oninput = draw;
     draw();
@@ -325,6 +363,10 @@ const pages = {
     $('#profileName').textContent = user.name;
     $('#profileMail').textContent = user.email;
     $('#avatar').textContent = user.name[0];
+    const foto = new Image();
+    foto.alt = '';
+    foto.onload = () => $('#avatar').replaceChildren(foto);
+    foto.src = AVATAR;
 
     const owned = getOwned().map(byId);
     $('#ownedGrid').innerHTML = owned.length

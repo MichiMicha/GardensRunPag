@@ -283,7 +283,7 @@ select {
   display: flex;
   flex-direction: column;
 }
-/* Hover de productos (solo en equipos con mouse) */
+/* Hover de productos */
 .card,
 .media img {
   transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
@@ -306,6 +306,9 @@ select {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+.media.contain img {
+  object-fit: contain;
 }
 .tall {
   aspect-ratio: 289 / 443;
@@ -348,7 +351,7 @@ select {
   content: "";
   position: absolute;
   inset: 0;
-} /* toda la tarjeta es clicable */
+}
 .foot {
   display: flex;
   align-items: center;
@@ -579,7 +582,7 @@ select {
   gap: 12px;
 }
 
-/* Tarjetas centradas (login, contacto, pago realizado) */
+/* Tarjetas centradas */
 .center {
   display: grid;
   place-items: center;
@@ -613,6 +616,17 @@ select {
 .socials img {
   width: 70px;
   border-radius: 14px;
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+.socials a:hover img,
+.socials a:focus-visible img {
+  transform: translateY(-5px) scale(1.1);
+  filter: brightness(1.2);
+}
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 .google {
   display: flex;
@@ -660,6 +674,7 @@ select {
   font-size: 0.85rem;
 }
 .avatar {
+  overflow: hidden;
   width: 60px;
   height: 60px;
   border-radius: 50%;
@@ -699,6 +714,39 @@ select {
 .profile-body .grid {
   padding: 24px 0 24px 32px;
   align-content: start;
+}
+
+/* Lector de cómic */
+.reader {
+  display: grid;
+  gap: 16px;
+  justify-items: center;
+  padding-block: 24px 40px;
+}
+.reader-bar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.reader-bar h1 {
+  font-size: 1.2rem;
+}
+#pageImg {
+  width: min(100%, 760px);
+  min-height: 240px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+.reader-nav {
+  display: flex;
+  gap: 12px;
+}
+.btn:disabled {
+  opacity: 0.35;
+  cursor: default;
 }
 
 /* Ventana de confirmación */

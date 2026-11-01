@@ -3,6 +3,7 @@ const LOGO = 'images/chiribi-studios-logo2.png';
 const DEMO = { name: 'Coco Tuneado', email: 'uncorreojsjjs@gmail.com' };
 const VALIDAR_PAGO = true;
 const AVATAR = 'images/avatar.png';
+const PRONTO = 'images/pronto.png';
 
 /* Cómic, páginas en la respectiva carpeta, toca llamarlas 1.jpg, 2.jpg, 3.jpg, etc.*/
 const COMIC_IDS = ['gardens-comic', 'comic-1'];
@@ -15,13 +16,13 @@ const PRODUCTS = [
   { id: 'juego-3', type: 'juego', name: 'Juego 3', tag: 'RPG de Acción', price: 79900, img: 'images/game-3.png', r: 'tall' },
 
   { id: 'comic-1', type: 'comic', name: "Garden's Run", tag: 'Precuela', price: 69900, img: 'images/cover-gardens-run.png', bg: 'sage' },
-  { id: 'comic-2', type: 'comic', name: 'Cómic', tag: 'Secuela', price: 69900, bg: 'g-green' },
-  { id: 'comic-3', type: 'comic', name: 'Cómic', tag: 'Historia Adicional', price: 59900, bg: 'g-blue' },
-  { id: 'comic-4', type: 'comic', name: 'Cómic', tag: 'Precuela', price: 69900, bg: 'g-purple' },
-  { id: 'comic-5', type: 'comic', name: 'Cómic', tag: 'Secuela', price: 69900, bg: 'g-red' },
-  { id: 'comic-6', type: 'comic', name: 'Cómic', tag: 'Historia Adicional', price: 69900, bg: 'g-green' },
-  { id: 'comic-7', type: 'comic', name: 'Cómic', tag: 'Precuela', price: 59900, bg: 'g-blue' },
-  { id: 'comic-8', type: 'comic', name: 'Cómic', tag: 'Secuela', price: 69900, bg: 'g-purple' },
+  { id: 'comic-2', type: 'comic', name: 'Cómic', tag: 'Secuela', price: 69900, img: PRONTO, fit: 'pronto' },
+  { id: 'comic-3', type: 'comic', name: 'Cómic', tag: 'Historia Adicional', price: 59900, img: PRONTO, fit: 'pronto' },
+  { id: 'comic-4', type: 'comic', name: 'Cómic', tag: 'Precuela', price: 69900, img: PRONTO, fit: 'pronto' },
+  { id: 'comic-5', type: 'comic', name: 'Cómic', tag: 'Secuela', price: 69900, img: PRONTO, fit: 'pronto' },
+  { id: 'comic-6', type: 'comic', name: 'Cómic', tag: 'Historia Adicional', price: 69900, img: PRONTO, fit: 'pronto' },
+  { id: 'comic-7', type: 'comic', name: 'Cómic', tag: 'Precuela', price: 59900, img: PRONTO, fit: 'pronto' },
+  { id: 'comic-8', type: 'comic', name: 'Cómic', tag: 'Secuela', price: 69900, img: PRONTO, fit: 'pronto' },
 
   { id: 'camiseta', type: 'merch-marca', name: 'Camiseta Chiribi', tag: 'Merch de marca', price: 59900, img: 'images/merch-camiseta.png' },
   { id: 'juego-de-mesa', type: 'merch-juego', name: '¡Frutas al cesto!', tag: 'Juego de mesa', price: 10000, img: 'images/merch-juego-de-mesa.png' },
@@ -34,10 +35,10 @@ const PRODUCTS = [
 
   { id: 'libro', type: 'merch-marca', name: 'Mystery Box Chiribi', tag: 'Merch de marca', price: 59900, img: 'images/mystery-box.png' },
 
-  { id: 'nov-1', type: 'novedad', name: 'Juego', tag: 'RPG de Acción', price: 79900, bg: 'g-red', r: 'short' },
-  { id: 'nov-2', type: 'novedad', free: true, name: 'Cómic', tag: 'Acción', price: 69900, bg: 'g-green', r: 'short' },
-  { id: 'nov-3', type: 'novedad', free: true, name: 'Cómic', tag: 'Aventura', price: 59900, bg: 'g-blue', r: 'short' },
-  { id: 'nov-4', type: 'novedad', name: 'Juego', tag: 'Puzzle Narrativo', price: 49900, bg: 'g-purple', r: 'short' },
+  { id: 'nov-1', type: 'novedad', name: 'Juego', tag: 'RPG de Acción', price: 79900, img: PRONTO, fit: 'pronto', r: 'short' },
+  { id: 'nov-2', type: 'novedad', free: true, name: 'Cómic', tag: 'Acción', price: 69900, img: PRONTO, fit: 'pronto', r: 'short' },
+  { id: 'nov-3', type: 'novedad', free: true, name: 'Cómic', tag: 'Aventura', price: 59900, img: PRONTO, fit: 'pronto', r: 'short' },
+  { id: 'nov-4', type: 'novedad', name: 'Juego', tag: 'Puzzle Narrativo', price: 49900, img: PRONTO, fit: 'pronto', r: 'short' },
 
   { id: 'gardens-comic', type: 'hidden', name: "Garden's Run", tag: 'Precuela', price: 0, img: 'images/cover-gardens-run.png', bg: 'sage' }
 ];

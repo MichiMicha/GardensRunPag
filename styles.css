@@ -125,6 +125,10 @@ img { display: block; max-width: 100%; height: auto; }
   gap: clamp(14px, 3vw, 48px);
 }
 
+.header-logo { margin-right: auto; display: flex; align-items: center; }
+.header-logo img { height: calc(var(--header-h) - 24px); width: auto; }
+@media (max-width: 380px) { .header-logo img { height: 32px; } }
+
 .nav { display: flex; gap: clamp(20px, 3.2vw, 48px); }
 
 .nav a {

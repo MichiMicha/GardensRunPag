@@ -250,8 +250,14 @@ img { display: block; max-width: 100%; height: auto; }
   font-family: var(--font-title);
   font-weight: 800; font-style: italic; text-transform: uppercase;
   font-size: clamp(2.4rem, 7.25vw, 6.9rem); line-height: 1;
-  margin: 0 0 -.5em clamp(16px, 6.7vw, 102px);
+  margin: 0 0 0 var(--pad-x);
 }
+
+/* Misma estructura que Trailer: título arriba y línea abajo */
+.historia .rule,
+.personajes .rule { margin-inline: var(--pad-x); }
+.historia-band,
+.gray-band { margin-top: clamp(14px, 1.6vw, 22px); }
 
 .historia-band {
   background: var(--beige);
@@ -286,11 +292,8 @@ img { display: block; max-width: 100%; height: auto; }
   padding: clamp(80px, 14vw, 220px) 0 clamp(60px, 9vw, 140px);
 }
 
-.personajes .title {
-  position: relative; z-index: 3;
-  margin-bottom: -.45em;
-}
-.title-left { margin-left: clamp(16px, 8.4vw, 127px); }
+.personajes .title { margin-bottom: 0; }
+.title-left { margin-left: var(--pad-x); }
 
 .gray-band {
   position: relative;
@@ -332,7 +335,7 @@ img { display: block; max-width: 100%; height: auto; }
 
 @media (min-width: 801px) {
   /* Medidas del Figma: Sam (jardín) se solapa con Sam (bata) y ambos sobresalen de la banda gris */
-  .gray-band { --u: min(1vw, 19.2px); padding-block: 0; }
+  .gray-band { --u: min(1vw, 19.2px); padding-block: 0; margin-top: calc(11.2 * var(--u) + 12px); } /* deja sitio para que la bata de Sam sobresalga sin tapar el título */
   .slide {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);
     align-items: end; gap: clamp(16px, 3vw, 48px);

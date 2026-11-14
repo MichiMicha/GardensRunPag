@@ -311,9 +311,8 @@ select {
 .media.contain img {
   object-fit: contain;
 }
-/* Imagen "Pronto": es muy alta y el texto está en el centro; se recorta a lo ancho y se reduce un poco para dejar margen */
 .media.pronto img {
-  object-position: 50% 47%; /* el texto está un poco arriba del centro en la imagen */
+  object-position: 50% 47%;
   scale: 0.75;
 }
 .tall {
@@ -765,7 +764,6 @@ select {
   cursor: default;
 }
 
-/* Lector en celular: la página del cómic ocupa todo el espacio libre (sin acercar ni alejar) */
 @media (max-width: 800px) {
   .reader {
     height: calc(100vh - 72px);
@@ -1062,7 +1060,7 @@ dialog .form {
   .feature .thumb {
     width: 100%;
   }
-  /* Carrito en celular: miniatura a la izquierda, datos y precio al lado, sin salirse de la pantalla */
+  /* Carrito en celular*/
   .cart-item {
     grid-template-columns: 96px minmax(0, 1fr) auto;
     gap: 4px 12px;

@@ -4,10 +4,8 @@ const DEMO = { name: 'Coco Tuneado', email: 'uncorreojsjjs@gmail.com' };
 const VALIDAR_PAGO = true;
 const AVATAR = 'images/avatar.png';
 const PRONTO = 'images/pronto.png';
-
-/* Cómic, páginas en la respectiva carpeta, toca llamarlas 1.jpg, 2.jpg, 3.jpg, etc.*/
 const COMIC_IDS = ['gardens-comic', 'comic-1'];
-const COMIC = { titulo: "Garden's Run", carpeta: 'comic/', paginas: 4, ext: 'jpg' };
+const COMIC = { titulo: "Garden's Run", carpeta: 'comic/', paginas: 6, ext: 'png' };
 
 const PRODUCTS = [
   { id: 'juego-1', type: 'juego', name: 'Juego 1', tag: 'RPG de Acción', price: 79900, img: 'images/game-1.png', r: 'tall' },
